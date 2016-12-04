@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import HlamItem from './HlamItem';
 
 class HlamGrid extends React.Component {
