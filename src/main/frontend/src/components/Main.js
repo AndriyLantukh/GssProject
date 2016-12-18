@@ -1,101 +1,136 @@
 import React from 'react';
-import Content from './Content';
-import Navigation from './Navigation';
-import PostDetails from './PostDetails';
-import $ from 'jquery';
 import {Route, Router, browserHistory} from 'react-router';
+
+import $ from 'jquery';
+
 import InitialData from './InitialData';
+
+import Navigation from './Navigation';
+import LeftTab from './LeftTab';
 
 class Main extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            posts: InitialData
+            users: InitialData.users,
+            customers: InitialData.customers
         };
-        this.onDeletePost = this.onDeletePost.bind(this);
-        this.updatePosts = this.updatePosts.bind(this);
-        this.onNewPost = this.onNewPost.bind(this);
-        this.onLike = this.onLike.bind(this);
-        this.onChoose = this.onChoose.bind(this);
-        this.onMessage = this.onMessage.bind(this);
-        this.onBack = this.onBack.bind(this);
+        //       this.updateUsers = this.updateUsers.bind(this);
+        this.onAddUser = this.onAddUser.bind(this);
+        this.onDeleteUser = this.onDeleteUser.bind(this);
+        this.onAddCustomer = this.onAddCustomer.bind(this);
+
     }
 
-    componentDidMount() {
-        this.updatePosts();
-    }
+    // componentDidMount() {
+    //     this.updateUsers();
+    // }
 
-    updatePosts() {
-        $.get("/posts", (data) => {
-            this.setState({posts: data})
+    // updateUsers() {
+    // $.get("/users", (data) => {
+    //     this.setState({users: data})
+    // });
+
+    // }
+
+    onAddUser(login, password, role, close) {
+        //STUB
+        console.log("Add user");
+        let newUsers = this.state.users.slice();
+        newUsers.push({
+            id: newUsers.length,
+            login: login,
+            password: password,
+            role: role
         });
+
+        this.setState({users: newUsers});
+        close();
+
+        // $.ajax({
+        //     headers: {
+        //         "Accept": "application/json",
+        //         "Content-Type": "application/json"
+        //     },
+        //     type: "POST",
+        //     url: "/users/add",
+        //     data: JSON.stringify({login: login, password: password, role: role}),
+        //     success: () => this.updateUsers(),
+        //     error: () => this.updateUsers()
+        // });
     }
 
-    onDeletePost(id) {
-        $.post("/post/delete/" + id, null, () => this.updatePosts());
+    onDeleteUser(id, close) {
+        //STUB
+        console.log("Delete confirm" +id);
+        let newUsers = this.state.users.slice();
+        let index = newUsers.indexOf(newUsers.find(user => user.id === id));
+        newUsers.splice(index, 1);
+        this.setState({users: newUsers});
+
+        //   $.user("/users/delete" + id, null, () => this.updateUsers);
+        close();
     }
 
-    onNewPost(url) {
-        $.ajax({
-            type: "POST",
-            url: "/post",
-            dataType: "text",
-            contentType: "text/plain",
-            data: url,
-            success: () => this.updatePosts()
+    onAddCustomer( customerName, cellNumber, city, newPostOfficeNumber, balance, additionalInfo, close) {
+        //STUB
+        console.log("Add customer");
+        let newCustomers = this.state.customers.slice();
+        newCustomers.push({
+            id: newCustomers.length,
+            customerName: customerName,
+            cellNumber: cellNumber,
+            city: city,
+            newPostOfficeNumber: newPostOfficeNumber,
+            balance: balance,
+            additionalInfo: additionalInfo,
+            orders: []
         });
-    }
 
-    onLike(id) {
-        $.post("/post/like/" + id, null, () => this.updatePosts());
-    }
+        this.setState({customers: newCustomers});
+        close();
 
-    onChoose(id) {
-        browserHistory.push("/post/" + id);
-    }
-
-    onBack() {
-        browserHistory.push("/");
-    }
-
-    onMessage(id, author, text) {
-        $.ajax({
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            type: "POST",
-            url: "/post/message",
-            data: JSON.stringify({id: id, author: author, text: text}),
-            success: () => this.updatePosts(),
-            error: () => this.updatePosts()
-        });
+        // $.ajax({
+        //     headers: {
+        //         "Accept": "application/json",
+        //         "Content-Type": "application/json"
+        //     },
+        //     type: "POST",
+        //     url: "/customers/add",
+        //     data: JSON.stringify({
+        //         customerName: customerName,
+        //         cellNumber: cellNumber,
+        //         city: city,
+        //         newPostOfficeNumber: newPostOfficeNumber,
+        //         balance: balance,
+        //         additionalInfo: additionalInfo,
+        //     }),
+        //     success: () => this.updateCustomers(),
+        //     error: () => this.updateCustomers()
+        // });
     }
 
     render() {
-        let ContentWrapper = () => <Content posts={this.state.posts}
-                                            onDelete={this.onDeletePost}
-                                            onLike={this.onLike}
-                                            onChoose={this.onChoose}
-                                            onPost={this.onNewPost}/>;
+        let LeftPanel = () => <LeftTab users={this.state.users}
+                                       onAddUser={this.onAddUser}
+                                       onDeleteUser={this.onDeleteUser}
+                                       customers={this.state.customers}
+                                       onAddCustomer={this.onAddCustomer}
+                                                                        />;
 
-        let PostDetailsWrapper = (props) => {
-            let activePostId = props.params.id;
-            let post = this.state.posts.find(p => p.id == activePostId);
+        return (
+            <div>
+                <Navigation/>
+                <Router history={browserHistory}>
+                    <Route path="/" component={LeftPanel}/>
+                </Router>
 
-            return <PostDetails post={post}
-                                onMessage={this.onMessage}
-                                onBack={this.onBack}/>;
-        };
-        return <div>
-            <Navigation/>
-            <Router history={browserHistory}>
-                <Route path="/" component={ContentWrapper}/>
-                <Route path="/post/:id" component={PostDetailsWrapper}/>
-            </Router>
-        </div>;
+            </div>
+        );
     }
 }
+
+//
 
 export default Main;

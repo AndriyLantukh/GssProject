@@ -1,29 +1,55 @@
 
 // this data is used when not connected to server
 
-export default [
-    {
-        id: 0,
-        url: "http://www.freeimageslive.com/galleries/wallpaper/nature/nature00913_dt800.jpg",
-        likes: 5,
-        comments: []
-    },
-    {
-        id: 1,
-        url: "http://iipix.com/wallpaper/pics/katasunsethor800.jpg",
-        likes: 5,
-        comments: []
-    },
-    {
-        id: 2,
-        url: "https://tl.5ko.fr/uploads/T/Fractal_Broccoli.jpg",
-        likes: 5,
-        comments: []
-    },
-    {
-        id: 3,
-        url: "http://wfiles.brothersoft.com/m/mac-os-x-lake_88093-800x600.jpg",
-        likes: 5,
-        comments: []
-    }
-];
+export default {
+
+    users: [
+        {
+            id: 0,
+            login: "user1",
+            password: "pass1",
+            role: "admin1"
+        },
+        {
+            id: 1,
+            login: "user2",
+            password: "pass2",
+            role: "admin2"
+        }
+    ],
+
+    customers: [
+        {
+            id: 0,
+            customerName: "Заказчик1",
+            cellNumber: "+1111111111",
+            city: "Днепр",
+            newPostOfficeNumber: "111",
+            balance: 0,
+            additionalInfo: "Инфо1",
+            orders: []
+        },
+        {
+            id: 1,
+            customerName: "Заказчик2",
+            cellNumber: "+2222222222",
+            city: "Киев",
+            newPostOfficeNumber: "222",
+            balance: 1000,
+            additionalInfo: "Инфо2",
+            orders: []
+        },
+        {
+            id: 2,
+            customerName: "Заказчик3",
+            cellNumber: "+33333333333333",
+            city: "Одесса",
+            newPostOfficeNumber: "333",
+            balance: 333,
+            additionalInfo: "Инфо3",
+            orders: []
+        }
+    ]
+
+};
+
