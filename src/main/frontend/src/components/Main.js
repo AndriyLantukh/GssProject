@@ -16,99 +16,110 @@ class Main extends React.Component {
             users: InitialData.users,
             customers: InitialData.customers
         };
-        //       this.updateUsers = this.updateUsers.bind(this);
+        this.updateUsers = this.updateUsers.bind(this);
+        this.updateCustomers = this.updateCustomers.bind(this);
+
+
         this.onAddUser = this.onAddUser.bind(this);
         this.onDeleteUser = this.onDeleteUser.bind(this);
         this.onAddCustomer = this.onAddCustomer.bind(this);
 
     }
 
-    // componentDidMount() {
-    //     this.updateUsers();
-    // }
+    componentDidMount() {
+        this.updateUsers();
+        this.updateCustomers();
+    }
 
-    // updateUsers() {
-    // $.get("/users", (data) => {
-    //     this.setState({users: data})
-    // });
-
-    // }
-
-    onAddUser(login, password, role, close) {
-        //STUB
-        console.log("Add user");
-        let newUsers = this.state.users.slice();
-        newUsers.push({
-            id: newUsers.length,
-            login: login,
-            password: password,
-            role: role
+    updateUsers() {
+        $.get("/users", (data) => {
+            this.setState({users: data})
         });
 
-        this.setState({users: newUsers});
-        close();
+    }
 
-        // $.ajax({
-        //     headers: {
-        //         "Accept": "application/json",
-        //         "Content-Type": "application/json"
-        //     },
-        //     type: "POST",
-        //     url: "/users/add",
-        //     data: JSON.stringify({login: login, password: password, role: role}),
-        //     success: () => this.updateUsers(),
-        //     error: () => this.updateUsers()
-        // });
+    updateCustomers() {
+        $.get("/customers", (data) => {
+            this.setState({customers: data})
+        });
+
+    }
+
+    onAddUser(login, password, role, close) {
+       // STUB
+       //  console.log("Add user");
+       //  let newUsers = this.state.users.slice();
+       //  newUsers.push({
+       //      id: newUsers.length,
+       //      login: login,
+       //      password: password,
+       //      role: role
+       //  });
+       //  this.setState({users: newUsers});
+
+        $.ajax({
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            type: "POST",
+            url: "/users/add",
+            data: JSON.stringify({login: login, password: password, role: role}),
+            success: () => this.updateUsers(),
+            error: () => this.updateUsers()
+        });
+        close();
     }
 
     onDeleteUser(id, close) {
         //STUB
-        console.log("Delete confirm" +id);
-        let newUsers = this.state.users.slice();
-        let index = newUsers.indexOf(newUsers.find(user => user.id === id));
-        newUsers.splice(index, 1);
-        this.setState({users: newUsers});
+        // console.log("Delete confirm" +id);
+        // let newUsers = this.state.users.slice();
+        // let index = newUsers.indexOf(newUsers.find(user => user.id === id));
+        // newUsers.splice(index, 1);
+        // this.setState({users: newUsers});
 
-        //   $.user("/users/delete" + id, null, () => this.updateUsers);
+        $.post("/users/delete/" + id, null, () => this.updateUsers);
         close();
     }
 
-    onAddCustomer( customerName, cellNumber, city, newPostOfficeNumber, balance, additionalInfo, close) {
+    onAddCustomer(customerName, cellNumber, city, newPostOfficeNumber, balance, additionalInfo, close) {
         //STUB
         console.log("Add customer");
-        let newCustomers = this.state.customers.slice();
-        newCustomers.push({
-            id: newCustomers.length,
-            customerName: customerName,
-            cellNumber: cellNumber,
-            city: city,
-            newPostOfficeNumber: newPostOfficeNumber,
-            balance: balance,
-            additionalInfo: additionalInfo,
-            orders: []
-        });
 
-        this.setState({customers: newCustomers});
-        close();
-
-        // $.ajax({
-        //     headers: {
-        //         "Accept": "application/json",
-        //         "Content-Type": "application/json"
-        //     },
-        //     type: "POST",
-        //     url: "/customers/add",
-        //     data: JSON.stringify({
-        //         customerName: customerName,
-        //         cellNumber: cellNumber,
-        //         city: city,
-        //         newPostOfficeNumber: newPostOfficeNumber,
-        //         balance: balance,
-        //         additionalInfo: additionalInfo,
-        //     }),
-        //     success: () => this.updateCustomers(),
-        //     error: () => this.updateCustomers()
+        // let newCustomers = this.state.customers.slice();
+        // newCustomers.push({
+        //     id: newCustomers.length,
+        //     customerName: customerName,
+        //     cellNumber: cellNumber,
+        //     city: city,
+        //     newPostOfficeNumber: newPostOfficeNumber,
+        //     balance: balance,
+        //     additionalInfo: additionalInfo,
+        //     orders: []
         // });
+        // this.setState({customers: newCustomers});
+
+
+        $.ajax({
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            type: "POST",
+            url: "/customers/add",
+            data: JSON.stringify({
+                customerName: customerName,
+                cellNumber: cellNumber,
+                city: city,
+                newPostOfficeNumber: newPostOfficeNumber,
+                balance: balance,
+                additionalInfo: additionalInfo,
+            }),
+            success: () => this.updateCustomers(),
+            error: () => this.updateCustomers()
+        });
+        close();
     }
 
     render() {
@@ -117,7 +128,7 @@ class Main extends React.Component {
                                        onDeleteUser={this.onDeleteUser}
                                        customers={this.state.customers}
                                        onAddCustomer={this.onAddCustomer}
-                                                                        />;
+        />;
 
         return (
             <div>

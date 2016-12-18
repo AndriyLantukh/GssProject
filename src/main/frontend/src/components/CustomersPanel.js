@@ -154,7 +154,7 @@ const CustomersPanel = React.createClass({
                         <Modal.Title>Edit customer data</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <ModalBody activeRow={this.state.activeRow}/>
+                        <ModalBody />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.closeEdit}>Close</Button>
@@ -164,71 +164,75 @@ const CustomersPanel = React.createClass({
                     </Modal.Footer>
                 </Modal>
 
+
             </div>
         );
     }
 });
 
-let ModalBody = (activeRow) => {
-    if (activeRow === undefined ) {
+let ModalBody = () => {
+    console.log("InModal");
+    if (this.state.activeRow === undefined ) {
         console.log("Empty");
         return <div></div>
+
     } else {
-        return <FormGroup>
-            <InputGroup>
-                <div>
-                    <ControlLabel>ID</ControlLabel>
-                    <FormControl type="text"
-                                 value={activeRow.props.data.id}
-                                 placeholder="Person name or organisation name"
-                                 onChange={this.handleNameChange}/>
-
-                </div>
-                <div>
-                    <ControlLabel>Customer name</ControlLabel>
-                    <FormControl type="text"
-                                 value={activeRow.props.data.customerName}
-                                 placeholder="Person name or organisation name"
-                                 onChange={this.handleNameChange}/>
-
-                </div>
-                <div>
-                    <ControlLabel>Tel. Number</ControlLabel>
-                    <FormControl type="text"
-                                 value={activeRow.props.data.cellNumber}
-                                 placeholder="Enter phone number in format +380 00 000 00 00"
-                                 onChange={this.handleCellNumberChange}/>
-                </div>
-                <div>
-                    <ControlLabel>City</ControlLabel>
-                    <FormControl type="text"
-                                 value={activeRow.props.data.city}
-                                 placeholder="City"
-                                 onChange={this.handleCityChange}/>
-                </div>
-                <div>
-                    <ControlLabel>New post office number</ControlLabel>
-                    <FormControl type="text"
-                                 value={activeRow.props.data.newPostOfficeNumber}
-                                 placeholder="Secify number of office 'Нова пошта'"
-                                 onChange={this.handleNewPostOfficeNumberChange}/>
-                </div>
-                <div>
-                    <ControlLabel>Start balance</ControlLabel>
-                    <FormControl type="text"
-                                 value={activeRow.props.data.balance}
-                                 placeholder="0"
-                                 onChange={this.handleBalanceChange}/>
-                </div>
-                <div>
-                    <ControlLabel>Additional information</ControlLabel>
-                    <FormControl type="text"
-                                 value={activeRow.props.data.additionalInfo}
-                                 placeholder=""
-                                 onChange={this.handleAdditionalInfoChange}/>
-                </div>
-            </InputGroup>
-        </FormGroup>
+        // let activeRow = this.state.activeRow;
+        // return <FormGroup>
+        //     <InputGroup>
+        //         <div>
+        //             <ControlLabel>ID</ControlLabel>
+        //             <FormControl type="text"
+        //                          value={activeRow.props.data.id}
+        //                          placeholder="Person name or organisation name"
+        //                          onChange={this.handleNameChange}/>
+        //
+        //         </div>
+        //         <div>
+        //             <ControlLabel>Customer name</ControlLabel>
+        //             <FormControl type="text"
+        //                          value={activeRow.props.data.customerName}
+        //                          placeholder="Person name or organisation name"
+        //                          onChange={this.handleNameChange}/>
+        //
+        //         </div>
+        //         <div>
+        //             <ControlLabel>Tel. Number</ControlLabel>
+        //             <FormControl type="text"
+        //                          value={activeRow.props.data.cellNumber}
+        //                          placeholder="Enter phone number in format +380 00 000 00 00"
+        //                          onChange={this.handleCellNumberChange}/>
+        //         </div>
+        //         <div>
+        //             <ControlLabel>City</ControlLabel>
+        //             <FormControl type="text"
+        //                          value={activeRow.props.data.city}
+        //                          placeholder="City"
+        //                          onChange={this.handleCityChange}/>
+        //         </div>
+        //         <div>
+        //             <ControlLabel>New post office number</ControlLabel>
+        //             <FormControl type="text"
+        //                          value={activeRow.props.data.newPostOfficeNumber}
+        //                          placeholder="Secify number of office 'Нова пошта'"
+        //                          onChange={this.handleNewPostOfficeNumberChange}/>
+        //         </div>
+        //         <div>
+        //             <ControlLabel>Start balance</ControlLabel>
+        //             <FormControl type="text"
+        //                          value={activeRow.props.data.balance}
+        //                          placeholder="0"
+        //                          onChange={this.handleBalanceChange}/>
+        //         </div>
+        //         <div>
+        //             <ControlLabel>Additional information</ControlLabel>
+        //             <FormControl type="text"
+        //                          value={activeRow.props.data.additionalInfo}
+        //                          placeholder=""
+        //                          onChange={this.handleAdditionalInfoChange}/>
+        //         </div>
+        //     </InputGroup>
+        // </FormGroup>
     }
 };
 

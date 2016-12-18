@@ -31,7 +31,7 @@ public class CustomerController {
                 .cellNumber(c.getCellNumber())
                 .city(c.getCity())
                 .newPostOfficeNumber(c.getNewPostOfficeNumber())
-                .balance(new BigDecimal(c.getStartBalance()))
+                .balance(new BigDecimal(Integer.valueOf(c.getBalance())))
                 .additionalInfo(c.getAdditionalInfo())
                 .build();
         return customerRepo.save(customer);
@@ -64,7 +64,7 @@ class CustomerReq {
     private String cellNumber;
     private String city;
     private String newPostOfficeNumber;
-    private Integer startBalance;
+    private String balance;
     private String additionalInfo;
 }
 
