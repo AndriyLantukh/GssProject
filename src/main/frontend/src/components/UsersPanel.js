@@ -92,7 +92,9 @@ const UsersPanel = React.createClass({
                         <Button onClick={this.closeAdd}>Close</Button>
                         <Button bsStyle="success" disabled={buttonDisabled} onClick={() => {
                             this.setState({login: "", password: "", role: ""});
-                            this.props.onAddUser(this.state.login, this.state.password, this.state.role, this.closeAdd);
+                            this.props.onAddUser(this.state.login, this.state.password, this.state.role);
+                            this.closeAdd();
+
                         }}>Add User</Button>
                     </Modal.Footer>
                 </Modal>
@@ -107,7 +109,8 @@ const UsersPanel = React.createClass({
                     <Modal.Footer>
                         <Button onClick={this.closeEdit}>Close</Button>
                         <Button bsStyle="danger" onClick={() => {
-                            this.props.onDeleteUser(this.state.activeRow.props.data.id, this.closeEdit);
+                            this.props.onDeleteUser(this.state.activeRow.props.data.id);
+                            this.closeEdit();
                         }}>Delete User</Button>
                     </Modal.Footer>
                 </Modal>
