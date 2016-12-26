@@ -27,11 +27,14 @@ const CustomersPanel = React.createClass({
     },
 
     closeAdd() {
+
         this.setState({showModalAdd: false});
     },
 
     openAdd() {
-        this.setState({showModalAdd: true});
+        var state = this.getInitialState();
+        state.showModalAdd = true;
+        this.setState(state);
     },
 
     closeEdit() {
@@ -181,7 +184,7 @@ const CustomersPanel = React.createClass({
                     </Modal.Header>
                     <Modal.Body>
                         <Form horizontal>
-                            <FormGroup controlId="EditCustomerFormName">
+                            <FormGroup controlId="AddCustomerFormName">
                                 <Col componentClass={ControlLabel} sm={4}>
                                     Customer name
                                 </Col>
@@ -194,7 +197,7 @@ const CustomersPanel = React.createClass({
                                     />
                                 </Col>
                             </FormGroup>
-                            <FormGroup controlId="EditCustomerFormPhone">
+                            <FormGroup controlId="AddCustomerFormPhone">
                                 <Col componentClass={ControlLabel} sm={4}>
                                     Phone number
                                 </Col>
@@ -207,7 +210,7 @@ const CustomersPanel = React.createClass({
                                     />
                                 </Col>
                             </FormGroup>
-                            <FormGroup controlId="EditCustomerFormCity">
+                            <FormGroup controlId="AddCustomerFormCity">
                                 <Col componentClass={ControlLabel} sm={4}>
                                     Phone number
                                 </Col>
@@ -220,7 +223,7 @@ const CustomersPanel = React.createClass({
                                     />
                                 </Col>
                             </FormGroup>
-                            <FormGroup controlId="EditCustomerFormNewPostOffice">
+                            <FormGroup controlId="AddCustomerFormNewPostOffice">
                                 <Col componentClass={ControlLabel} sm={4}>
                                     New post office number
                                 </Col>
@@ -233,7 +236,7 @@ const CustomersPanel = React.createClass({
                                     />
                                 </Col>
                             </FormGroup>
-                            <FormGroup controlId="EditCustomerFormBalance">
+                            <FormGroup controlId="AddCustomerFormBalance">
                                 <Col componentClass={ControlLabel} sm={4}>
                                     Start balance
                                 </Col>
@@ -246,7 +249,7 @@ const CustomersPanel = React.createClass({
                                     />
                                 </Col>
                             </FormGroup>
-                            <FormGroup controlId="EditCustomerFormInfo">
+                            <FormGroup controlId="AddCustomerFormInfo">
                                 <Col componentClass={ControlLabel} sm={4}>
                                     Additional information
                                 </Col>
