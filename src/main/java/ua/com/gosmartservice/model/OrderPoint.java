@@ -17,9 +17,7 @@ public class OrderPoint {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private TheOrder theOrder;
+    private Long orderId;
 
     private String serviceType;
     private String deviceModel;
@@ -33,16 +31,19 @@ public class OrderPoint {
     private String repairman;
     private String info;
     private Date startDate;
-    private Date inOperation;
-    private Date ready;
-    private Date shipped;
+    private Date checkedDate;
+    private Date inOperationDate;
+    private Date readyDate;
+    private Date shippedDate;
+    private Date closedDate;
 
-    public OrderPoint(TheOrder theOrder, String serviceType, String deviceModel, BigDecimal price) {
-        this.theOrder = theOrder;
+
+    public OrderPoint(Long orderId, String serviceType, String deviceModel, BigDecimal price, Date startDate) {
+        this.orderId = orderId;
         this.serviceType = serviceType;
         this.deviceModel = deviceModel;
         this.price = price;
-        this.startDate = theOrder.getOrderStartDate();
+        this.startDate = startDate;
     }
 
 }

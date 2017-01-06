@@ -294,7 +294,6 @@ const CustomersPanel = React.createClass({
                     <Modal.Footer>
                         <Button onClick={this.closeEdit}>Close</Button>
                         <Button bsStyle="success" onClick={() => {
-                            //                  this.props.onDeleteUser(this.state.activeRow.props.data.id, this.closeEdit);
                         }}>Save Data</Button>
                     </Modal.Footer>
                 </Modal>

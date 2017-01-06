@@ -1,4 +1,3 @@
-
 // this data is used when not connected to server
 
 export default {
@@ -37,7 +36,7 @@ export default {
             newPostOfficeNumber: "222",
             balance: 1000,
             additionalInfo: "Инфо2",
-            orders: []
+            orders: [0, 1]
         },
         {
             id: 2,
@@ -47,7 +46,94 @@ export default {
             newPostOfficeNumber: "333",
             balance: 333,
             additionalInfo: "Инфо3",
-            orders: []
+            orders: [2]
+        }
+    ],
+
+    orders: [
+        {
+            id: 0,
+            customerId: 1,
+            startDate: "01.01.2017",
+            status: "received",
+            orderPoints: [0]
+        },
+        {
+            id: 1,
+            customerId: 1,
+            startDate: "02.01.2017",
+            status: "checked",
+            orderPoints: [1]
+        },
+        {
+            id: 2,
+            customerId: 2,
+            startDate: "03.01.2017",
+            status: "inProcess",
+            orderPoints: [2]
+        },
+    ],
+
+    orderPoints: [
+        {
+            id: 0,
+            orderId: 0,
+            serviceType: "cellPhoneRepair",
+            deviceModel: "iPhone 6",
+            price: 100,
+            pointStatus: "received",
+            comment: "",
+            gotCash: 100,
+            gotCard: 0,
+            rate: 30,
+            repairman: "A",
+            info: "info0",
+            startDate: "01.01.2017",
+            checkedDate: "",
+            inOperationDate: "",
+            readyDate: "",
+            shippedDate: "",
+            closedDate: ""
+        },
+        {
+            id: 1,
+            orderId: 1,
+            serviceType: "LCD repair",
+            deviceModel: "iPhone 5",
+            price: 80,
+            pointStatus: "received",
+            comment: "",
+            gotCash: 0,
+            gotCard: 0,
+            rate: 25,
+            repairman: "B",
+            info: "info1",
+            startDate: "02.01.2017",
+            checkedDate: "",
+            inOperationDate: "",
+            readyDate: "",
+            shippedDate: "",
+            closedDate: ""
+        },
+        {
+            id: 2,
+            orderId: 2,
+            serviceType: "LCD repair",
+            deviceModel: "iPhone 6s",
+            price: 350,
+            pointStatus: "received",
+            comment: "",
+            gotCash: 0,
+            gotCard: 0,
+            rate: 100,
+            repairman: "C",
+            info: "info2",
+            startDate: "03.01.2017",
+            checkedDate: "",
+            inOperationDate: "",
+            readyDate: "",
+            shippedDate: "",
+            closedDate: ""
         }
     ]
 

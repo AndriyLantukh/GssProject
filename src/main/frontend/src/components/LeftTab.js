@@ -2,6 +2,7 @@ import React from 'react';
 import {Tab, Row, Col, Nav, NavItem} from 'react-bootstrap';
 import UsersPanel from './UsersPanel';
 import CustomersPanel from './CustomersPanel';
+import OrdersPanel from './OrdersPanel';
 
 
 class LeftTab extends React.Component {
@@ -25,7 +26,9 @@ class LeftTab extends React.Component {
                     <Col sm={9}>
                         <Tab.Content animation>
                             <Tab.Pane eventKey="first">
-                                Orders content
+                                <OrdersPanel orders={this.props.orders}
+
+                                />
                             </Tab.Pane>
                             <Tab.Pane eventKey="second">
                                 <CustomersPanel customers={this.props.customers}

@@ -14,7 +14,8 @@ class Main extends React.Component {
         super();
         this.state = {
             users: InitialData.users,
-            customers: InitialData.customers
+            customers: InitialData.customers,
+            orders: InitialData.orders
         };
         this.updateUsers = this.updateUsers.bind(this);
         this.updateCustomers = this.updateCustomers.bind(this);
@@ -70,20 +71,20 @@ class Main extends React.Component {
     }
 
     onDeleteUser(id) {
-        //   STUB
-        // console.log("Delete confirm" + id);
-        // let newUsers = this.state.users.slice();
-        // let index = newUsers.indexOf(newUsers.find(user => user.id === id));
-        // newUsers.splice(index, 1);
-        // this.setState({users: newUsers});
+      //    STUB
+      //   console.log("Delete confirm" + id);
+      //   let newUsers = this.state.users.slice();
+      //   let index = newUsers.indexOf(newUsers.find(user => user.id === id));
+      //   newUsers.splice(index, 1);
+      //   this.setState({users: newUsers});
 
              $.post("/users/delete/" + id, null, () => this.updateUsers);
     }
 
     onAddCustomer(customerName, cellNumber, city, newPostOfficeNumber, balance, additionalInfo) {
         //STUB
-        // console.log("Add customer");
-        //
+        console.log("Add customer");
+
         // let newCustomers = this.state.customers.slice();
         // newCustomers.push({
         //     id: newCustomers.length,
@@ -123,6 +124,9 @@ class Main extends React.Component {
                                        onDeleteUser={this.onDeleteUser}
                                        customers={this.state.customers}
                                        onAddCustomer={this.onAddCustomer}
+                                       orders={this.state.orders}
+
+
         />;
 
         return (
@@ -136,7 +140,5 @@ class Main extends React.Component {
         );
     }
 }
-
-//
 
 export default Main;

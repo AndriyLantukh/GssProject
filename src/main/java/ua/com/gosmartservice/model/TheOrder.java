@@ -27,13 +27,14 @@ public class TheOrder {
     private Date orderStartDate;
     private String orderStatus;
 
-    @OneToMany(mappedBy = "theOrder", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "orderId", cascade = CascadeType.PERSIST)
     private List<OrderPoint> orderPoints;
 
 
     public TheOrder(Customer customer) {
         this.customer = customer;
         this.orderStartDate = new Date();
+        this.orderStatus = "received";
     }
 
 }

@@ -43,7 +43,7 @@ public class OrderController {
     @RequestMapping(value = "/order/addPoint", method = RequestMethod.POST, consumes = "application/json; charset=UTF-8")
     public OrderPoint addPoint(@RequestBody PointReq p) {
         TheOrder theOrder = orderRepo.findOne(p.getOrderId());
-        OrderPoint newPoint = new OrderPoint(theOrder, p.getServiceType(), p.getDeviceModel(), new BigDecimal(p.getPrice()));
+        OrderPoint newPoint = new OrderPoint(p.getOrderId(), p.getServiceType(), p.getDeviceModel(), new BigDecimal(p.getPrice()), theOrder.getOrderStartDate());
         return pointRepo.save(newPoint);
     }
 
